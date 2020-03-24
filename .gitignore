@@ -1,0 +1,3 @@
+#this is to ignore the development database
+*.db
+*.sqlite3
