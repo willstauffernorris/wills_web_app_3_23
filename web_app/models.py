@@ -7,13 +7,20 @@ db = SQLAlchemy()
 
 migrate = Migrate()
 
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(128))
+    location = db.Column(db.String(128))
+
+
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
     author_id = db.Column(db.String(128))
 
 
-'''
+
 def parse_records(database_records):
     """
     A helper method for converting a list of database record objects into a list of dictionaries, so they can be returned as JSON
@@ -36,4 +43,6 @@ def parse_records(database_records):
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
     return parsed_records
-    '''
+
+
+

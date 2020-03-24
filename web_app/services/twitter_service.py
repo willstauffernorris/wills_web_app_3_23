@@ -19,7 +19,7 @@ api = tweepy.API(auth)
 print('API', type(api))
 
 #breakpoint()
-
+    
 #public_tweets = api.home_timeline()
 #for tweet in public_tweets:
 #    print(tweet.text)
@@ -32,7 +32,7 @@ print(user._json)
 print('-------------')
 print('STATUSES')
 
-statuses = api.user_timeline(screen_name, tweet_mode='extended', count=150, exclude_replies=True)
+statuses = api.user_timeline(screen_name, tweet_mode='extended', count=150, exclude_replies=True, include_rts=False)
 
 for status in statuses:
     print(type(status))
