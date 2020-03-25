@@ -43,6 +43,7 @@ def user():
         {"id": 3, "username": "Nicole"},
     ]
     #book_records = Book.query.all()
+    
     return render_template("user.html", user=users)
 
 
