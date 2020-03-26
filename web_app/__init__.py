@@ -16,11 +16,13 @@ from web_app.routes.stats_routes import stats_routes
 
 load_dotenv()
 
+SECRET_KEY = os.getenv('SECRET_KEY', default = "super secret") # todo: pass from env var (enables flash messaging)
 DATABASE_URL = os.getenv("DATABASE_URL", default= "sqlite:///wills_web_app_3_23.db")
 
 def create_app():
     app = Flask(__name__)
 
+    app.config["SECRET_KEY"] = SECRET_KEY
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wills_web_app_3_23.db"
