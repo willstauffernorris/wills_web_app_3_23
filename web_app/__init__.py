@@ -1,3 +1,7 @@
+
+import os
+from dotenv import load_dotenv
+
 from flask import Flask
 
 #app = Flask(__name__)
@@ -10,11 +14,16 @@ from web_app.routes.user_routes import user_routes
 from web_app.routes.twitter_routes import twitter_routes
 from web_app.routes.stats_routes import stats_routes
 
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL", default= "sqlite:///wills_web_app_3_23.db")
+
 def create_app():
     app = Flask(__name__)
 
-
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wills_web_app_3_23.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wills_web_app_3_23.db"
     #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////Users/mjr/Desktop/web-app-inclass-11/web_app_12.db"
 
     db.init_app(app)
