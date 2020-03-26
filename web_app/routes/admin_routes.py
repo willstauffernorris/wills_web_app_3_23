@@ -1,11 +1,14 @@
 # web_app/routes/admin_routes.py
 
 from flask import Blueprint, jsonify, request, render_template, flash, redirect
+from web_app.routes.twitter_routes import store_twitter_user_data
+
 
 from web_app.models import db
 
 admin_routes = Blueprint("admin_routes", __name__)
 
+##This kind of thing will be on the sprint challenge.
 @admin_routes.route("/admin/db/reset")
 def reset_db():
     print(type(db))
@@ -20,7 +23,13 @@ def seed_db():
     # ... so we can "seed" our database with some example users and tweets
     # ... to ensure that it is ready to make predictions later
 
-    default_users = ["elonmusk, austen, nbcnews, balajis, nntaleb"]
+    default_users = ["elonmusk", "austen", "nbcnews"]
 
-    return jsonify({"message": "DB SEEDED OK (TODO)"})
+    for screen_name in default_users:
+        db_user, statuses = store_twitter_user_data(screen_name)
+
+
+
+
+    return jsonify({"message": f"DB SEEDED OK (w/ {len(default_users)})"})
 
